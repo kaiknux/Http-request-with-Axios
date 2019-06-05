@@ -13,6 +13,7 @@ class Blog extends Component {
     state = {
         posts: [],
         selectedPostId: null,
+        error: false
      };
 
     componentDidMount() {
@@ -26,7 +27,11 @@ class Blog extends Component {
                 } // renderizar um elemento novo pra ter certeza de poder postar elementos em uma array nova
             })
            this.setState({posts: updatedPosts});
-        });
+        })
+        .catch(error => {
+            console.log(error)
+            this.setState({error: true})
+        })
 
     }
 
@@ -35,16 +40,17 @@ class Blog extends Component {
     }
 
     render () {
-        const posts = this.state.posts.map(
-            post => { return <Post click={() => this.postSelectedHandler(post.id)} key={post.id} title={post.title} author={post.author}/>}
-        );
+        let posts = <p>Something went wrong.</p>
+        if (!this.state.error) {
+            posts = this.state.posts.map(
+                post => { return <Post click={() => this.postSelectedHandler(post.id)} key={post.id} title={post.title} author={post.author}/>}
+            );
+        }
         return (
             <div>
                 <section className="Posts">
                     {posts};
-                    <Post />
-                    <Post />
-                    <Post />
+
                 </section>
                 <section>
                     <FullPost id={this.state.selectedPostId} />
