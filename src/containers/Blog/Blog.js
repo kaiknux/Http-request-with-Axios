@@ -13,7 +13,7 @@ class Blog extends Component {
     state = {
         posts: [],
         selectedPostId: null,
-        error: false
+        // error: false
      };
 
     componentDidMount() {
