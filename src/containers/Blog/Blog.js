@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, Switch } from 'react-router-dom';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
 import './Blog.css';
@@ -31,16 +31,21 @@ class Blog extends Component {
                         </ul>
                     </nav>
                 </header>
-                <Route path="/" exact component={Posts}/>
-                <Route path="/new-post" component={NewPost}/>
-                <Route path="/:id" exact component={FullPost}/>
-
+                <Switch>
+                    <Route path="/" exact component={Posts} />
+                    <Route path="/new-post" component={NewPost} />
+                    <Route path="/:id" exact component={FullPost} />
+                </Switch>
             </div>
         );
     }
 }
 
 // react router SEMPRE VAI USAR SÓ ABSOLUTE PATH
+
+// pra falar pro react como carregar só uma das rotas: usar o switch
+// se eu usar o switch o :id tem que ser necessariametne o último pq ele vai analizar tudo como string d epossível id
+
 
 // importante sempre jogar exact no home (no "/")
 
@@ -58,4 +63,6 @@ class Blog extends Component {
 // <Route path="/" exact render={() => <h1>Home</h1>}/>
 // O Link component é pra não renderizar a porra toda de novo, ele previne a aplicação de ficar pesada e sem sentido
 
+// uma opção pra não usar o Link seria usar o mesmo postSelectedHandler com um this.props.history.push({pathname: '/' + id})
+// em um click event listener
 export default Blog;
