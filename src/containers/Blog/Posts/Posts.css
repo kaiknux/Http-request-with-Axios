@@ -1,0 +1,25 @@
+.Posts {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+}
+
+.Posts ul {
+    list-style: none;
+    margin: o;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.Posts li {
+    display: inline-block;
+    margin: 20px;
+}
+
+.Posts a {
+    text-decoration: none;
+    color: black;
+}
